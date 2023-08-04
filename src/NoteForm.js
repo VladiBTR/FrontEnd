@@ -1,41 +1,43 @@
 import React, { useState } from 'react';
 
-const NoteForm = ({ onSubmit }) => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [tags, setTags] = useState('');
+const NoteForm = ({ addNote }) => {
+  const [newNote, setNewNote] = useState({ title: '', content: '', tags: '' });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ title, content, tags: tags.split(',') });
-    setTitle('');
-    setContent('');
-    setTags('');
+    const updatedNote = {
+      title: newNote.title,
+      content: newNote.content,
+      tags: newNote.tags.split(',').map((tag) => tag.trim()),
+    };
+    addNote(updatedNote);
+    // Clear the input fields by updating the newNote state
+    setNewNote({ title: '', content: '', tags: '' });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Title"
-        required
-      />
-      <textarea
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        placeholder="Content"
-        required
-      />
-      <input
-        type="text"
-        value={tags}
-        onChange={(e) => setTags(e.target.value)}
-        placeholder="Tags (comma-separated)"
-      />
-      <button type="submit">Save</button>
-    </form>
+    <div className="note-form">
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Title"
+          value={newNote.title}
+          onChange={(e) => setNewNote({ ...newNote, title: e.target.value })}
+        />
+        <textarea
+          placeholder="Content"
+          value={newNote.content}
+          onChange={(e) => setNewNote({ ...newNote, content: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Tags (comma-separated)"
+          value={newNote.tags}
+          onChange={(e) => setNewNote({ ...newNote, tags: e.target.value })}
+        />
+        <button type="submit">Save</button>
+      </form>
+    </div>
   );
 };
 
