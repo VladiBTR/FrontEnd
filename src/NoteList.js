@@ -1,6 +1,25 @@
 import React, { useState }  from 'react';
 
+import styled from 'styled-components';
+
+
 import axios from 'axios';
+
+
+const StyledButton = styled.button`
+  background-color: #01030E;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+
+
 
 const NoteList = ({ notes, updateNote, deleteNote, fetchNotes }) => {
   const [editedNoteId, setEditedNoteId] = useState(null);
@@ -32,33 +51,86 @@ const NoteList = ({ notes, updateNote, deleteNote, fetchNotes }) => {
   };
 
   return (
-    <div className="note-list">
-      {notes.map((note) => (
-        <div key={note._id} className="note">
-          {editedNoteId === note._id ? (
-            <>
-              <input type="text" value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
-              <textarea value={editedContent} onChange={(e) => setEditedContent(e.target.value)} />
-              <input type="text" value={editedTags} onChange={(e) => setEditedTags(e.target.value)} />
-              <button onClick={() => saveEditing(note._id)}>Save</button>
-              <button onClick={cancelEditing}>Cancel</button>
-            </>
-          ) : (
-            <>
-              <h3>{note.title}</h3>
-              <p>{note.content}</p>
-              <p>Tags: {note.tags.join(', ')}</p>
-              <div className="note-actions">
-                <button onClick={() => startEditing(note)}>Edit</button>
-                <button onClick={() => deleteNote(note._id)}>Delete</button>
-              </div>
-            </>
-          )}
-        </div>
-      ))}
-    </div>
-  );
+
+    <div className="todo-list">
+    {notes.map((note) => (
+      <div key={note._id} className="list">
+        {editedNoteId === note._id ? (
+          <>
+            <div
+              contentEditable="true"
+              className="editable-field"
+              onBlur={(e) => setEditedTitle(e.target.innerText)}
+            >
+              {editedTitle}
+            </div>
+            <div
+              contentEditable="true"
+              className="editable-field"
+              onBlur={(e) => setEditedContent(e.target.innerText)}
+            >
+              {editedContent}
+            </div>
+            <div
+              contentEditable="true"
+              className="editable-field"
+              onBlur={(e) => setEditedTags(e.target.innerText)}
+            >
+              {editedTags}
+            </div>
+            <StyledButton onClick={() => saveEditing(note._id)}>Save</StyledButton>
+            <StyledButton onClick={cancelEditing}>Cancel</StyledButton>
+          </>
+        ) : (
+          <>
+            <h3>{note.title}</h3>
+            <p>{note.content}</p>
+            <p>Tags: {note.tags.join(', ')}</p>
+            <div className="note-actions">
+              <button className='button-edit task-button' onClick={() => startEditing(note)}>
+                <i className='fa fa-edit' ></i> </button>
+              <button className='button-delete task-button' onClick={() => deleteNote(note._id)}>
+                <i className='fa fa-trash'></i> </button>
+            </div>
+          </>
+        )}
+      </div>
+    ))}
+  </div>
+);
 };
+
+
+
+
+
+//     <div className="todo-list">
+//       {notes.map((note) => (
+//         <div key={note._id} className="list">
+//           {editedNoteId === note._id ? (
+//             <>
+//               <input type="text" value={editedTitle} className='list' onChange={(e) => setEditedTitle(e.target.value)} />
+//               <input value={editedContent} className='list' onChange={(e) => setEditedContent(e.target.value)} />
+//               <input type="text" value={editedTags} className='list' onChange={(e) => setEditedTags(e.target.value)} />
+//               <StyledButton onClick={() => saveEditing(note._id)}>Save</StyledButton>
+//               <StyledButton onClick={cancelEditing}>Cancel</StyledButton>
+//             </>
+//           ) : (
+//             <>
+//               <h3>{note.title}</h3>
+//               <p>{note.content}</p>
+//               <p>Tags: {note.tags.join(', ')}</p>
+//               <div className="note-actions">
+//                 <StyledButton onClick={() => startEditing(note)}>Edit</StyledButton>
+//                 <StyledButton onClick={() => deleteNote(note._id)}>Delete</StyledButton>
+//               </div>
+//             </>
+//           )}
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
 
 
 

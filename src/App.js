@@ -78,19 +78,25 @@ function App() {
  
 
   return (
-    <div className="app">
-      <Header />
-      <div className="main-content">
-        {/* NoteForm component here */}
-        <NoteForm newNote={newNote} setNewNote={setNewNote} addNote={addNote} />
-        {/* NoteList component here */}
-        <NoteList notes={notes} updateNote={updateNote} deleteNote={deleteNote} fetchNotes={fetchNotes} />
+    <div className="container">
+      <div className='app-wrapper'>
+        
+          <Header />
+            <div>
+               {/* NoteForm component here */}
+               <NoteForm newNote={newNote} setNewNote={setNewNote} addNote={addNote} />
+            </div>
+          {/* NoteList component here */}
+          <NoteList notes={notes}  updateNote={updateNote} deleteNote={deleteNote} fetchNotes={fetchNotes} />
+
       </div>
     </div>
+    
   );
 }
 
-
+//  <div className="main-content">
+//  </div>
 
 
 
