@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import Header from './Header';
@@ -41,10 +40,6 @@ function App() {
       // After adding a new note, fetch the updated notes list
       await fetchNotes();
       // Clear the input fields
-
-      //setNewNote({ ...newNote, id: createdNote._id });
-
-
       setNewNote({ title: '', content: '', tags: [], id: '' });
     } catch (error) {
       console.error('Error creating note:', error);
@@ -74,7 +69,7 @@ function App() {
     }
   };
 
-
+  
  
 
   return (
@@ -94,18 +89,6 @@ function App() {
     
   );
 }
-
-//  <div className="main-content">
-//  </div>
-
-
-
-
-
-
-
-
-
 
 
 export default App;

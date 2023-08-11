@@ -31,6 +31,7 @@ const NoteForm = ({ addNote }) => {
           className={`textarea-input ${newNote.title ? '' : 'placeholder'}`}
           contentEditable="true"
           onInput={(e) => handleInputChange('title', e.target.innerText)}
+          suppressContentEditableWarning={true}
         >
           {newNote.title ? null : 'Title'}
         </div>
@@ -40,6 +41,7 @@ const NoteForm = ({ addNote }) => {
           className={`textarea-input ${newNote.content ? '' : 'placeholder'}`}
           contentEditable="true"
           onInput={(e) => handleInputChange('content', e.target.innerText)}
+          suppressContentEditableWarning={true}
         >
           {newNote.content ? null : 'Content'}
         </div>
@@ -49,6 +51,7 @@ const NoteForm = ({ addNote }) => {
           className={`textarea-input ${newNote.tags ? '' : 'placeholder'}`}
           contentEditable="true"
           onInput={(e) => handleInputChange('tags', e.target.innerText)}
+          suppressContentEditableWarning={true}
         >
           {newNote.tags ? null : 'Tags (comma-separated)'}
         </div>
@@ -64,31 +67,5 @@ const NoteForm = ({ addNote }) => {
 
 
 
-//     <div className="task-input">
-//       <form onSubmit={handleSubmit} >
-        
-//         <input className='textarea-input'
-//           type="text"
-//           placeholder="Title"
-//           value={newNote.title}
-//           onChange={(e) => setNewNote({ ...newNote, title: e.target.value })}
-//         />
-//         <textarea className='textarea-input'
-//           placeholder="Content"
-//           value={newNote.content}
-//           onChange={(e) => setNewNote({ ...newNote, content: e.target.value })}
-//         />
-//         <input className='textarea-input'
-//           type="text"
-//           placeholder="Tags (comma-separated)"
-//           value={newNote.tags}
-//           onChange={(e) => setNewNote({ ...newNote, tags: e.target.value })}
-//         />
-        
-//         <button className='button-add' type="submit">Save</button>
-//       </form>
-//     </div>
-//   );
-// };
 
 export default NoteForm;
