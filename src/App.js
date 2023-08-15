@@ -36,7 +36,7 @@ function App() {
   const addNote = async (newNoteData) => {
     try {
       const response = await axios.post(`${API_BASE_URL}notes/`, newNoteData);
-      
+      console.log(response)
       // After adding a new note, fetch the updated notes list
       await fetchNotes();
       // Clear the input fields
