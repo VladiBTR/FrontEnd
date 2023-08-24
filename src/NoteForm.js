@@ -9,8 +9,7 @@ const NoteForm = ({ addNote }) => {
     setNewNote((prevNote) => ({ ...prevNote, [key]: value }));
   };
 
-
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const updatedNote = {
@@ -30,6 +29,7 @@ const NoteForm = ({ addNote }) => {
         <div
           className={`textarea-input ${newNote.title ? '' : 'placeholder'}`}
           contentEditable="true"
+          onFocus={(e) => handleInputChange('title', e.target.innerText)}
           onInput={(e) => handleInputChange('title', e.target.innerText)}
           suppressContentEditableWarning={true}
         >
@@ -40,6 +40,7 @@ const NoteForm = ({ addNote }) => {
         <div
           className={`textarea-input ${newNote.content ? '' : 'placeholder'}`}
           contentEditable="true"
+          onFocus={(e) => handleInputChange('content', e.target.innerText)}
           onInput={(e) => handleInputChange('content', e.target.innerText)}
           suppressContentEditableWarning={true}
         >
@@ -50,6 +51,7 @@ const NoteForm = ({ addNote }) => {
         <div
           className={`textarea-input ${newNote.tags ? '' : 'placeholder'}`}
           contentEditable="true"
+          onFocus={(e) => handleInputChange('tags', e.target.innerText)}
           onInput={(e) => handleInputChange('tags', e.target.innerText)}
           suppressContentEditableWarning={true}
         >
